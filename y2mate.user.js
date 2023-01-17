@@ -14,7 +14,7 @@
 
 (function() {
 
-alert('ese');
+
     if(location.href.includes('https://www.y2mate.com/youtube-mp3/')){
         function btnFunc(){
             if(document.querySelector('#process_mp3')){document.querySelector('#process_mp3').click(); clearInterval(btnInt)}
