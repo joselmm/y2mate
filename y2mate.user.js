@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         Descargar MP3 de y2
 // @namespace    http://tampermonkey.net/
-// @version      1.0
-// @description  try to take over the world!
-// @author       You
+// @version      1.1
+// @description  Descargar mp3 de Youtube 
+// @author       joselmm
 // @match        https://www.youtube.com/*
 // @match        https://www.y2mate.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=youtube.com
