@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Descargar MP3 de y2
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  try to take over the world!
 // @author       You
 // @match        https://www.youtube.com/results?search_query=*
@@ -14,7 +14,7 @@
 
 (function() {
 
-        alert('gdfgd')
+
     if(location.href.includes('https://www.y2mate.com/youtube-mp3/')){
         function btnFunc(){
             if(document.querySelector('#process_mp3')){document.querySelector('#process_mp3').click(); clearInterval(btnInt)}
