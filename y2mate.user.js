@@ -7,8 +7,8 @@
 // @match        https://www.youtube.com/results?search_query=*
 // @match        https://www.y2mate.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=youtube.com
-// @downloadURL    https://github.com/joselmm/y2mate/blob/main/y2mate.user.js
-// @updateURL  https://github.com/joselmm/y2mate/blob/main/y2mate.meta.js
+// @downloadURL  https://github.com/joselmm/y2mate/blob/main/y2mate.user.js
+// @updateURL    https://github.com/joselmm/y2mate/blob/main/y2mate.meta.js
 // @grant        none
 // ==/UserScript==
 
