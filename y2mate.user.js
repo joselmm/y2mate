@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         Descargar MP3 de y2
+// @name         Y2 Mate decargas
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Descargar mp3 de Youtube 
 // @author       joselmm
 // @match        https://www.youtube.com/*
