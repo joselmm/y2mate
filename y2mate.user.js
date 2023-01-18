@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Y2 Mate decargas
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @description  Descargar mp3 de Youtube 
 // @author       joselmm
 // @match        https://www.youtube.com/*
@@ -78,7 +78,7 @@ if(document.querySelectorAll('.matey2')){document.querySelectorAll('.matey2').fo
             link.href = 'https://www.y2mate.com/youtube-mp3/' + links[i].href.split("=")[1];
             link.target = '_blank';
             redBox.appendChild(link);
-            link.style.fontSize = height+'px';
+            link.style.fontSize = (height*(5/7))+'px';
 
         }
     }
