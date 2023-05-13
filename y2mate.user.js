@@ -11,6 +11,7 @@
 // @updateURL    https://raw.githubusercontent.com/joselmm/y2mate/main/y2mate.meta.js
 // @grant        none
 // ==/UserScript==
+
 direccion=location.href;
 if(direccion.match(/download=.+/)){
     originalHref=location.href;
@@ -39,7 +40,7 @@ if(direccion.match(/download=.+/)){
                     var defaultQuality = localStorage.getItem("defaultVideoQuality");
                 }if(downloadMode==="nomode"){
                     var defaultQuality = localStorage.getItem("defaultAudioQuality");}
-              //  alert(originalHref);
+                //  alert(originalHref);
                 if(defaultQuality){
 
                     if(downloadMode==="audio"){
@@ -88,12 +89,20 @@ if(direccion.match(/download=.+/)){
         return
     }
 
+    var scriptSD = document.createElement("script");
+    scriptSD.id="sheet-data";
+    document.head.appendChild(scriptSD);
+    scriptSD.src="https://cdn.jsdelivr.net/gh/joselmm/SheeDataLocalFunctions/src/v1.js"
 
-    var $iframeOculto = document.createElement("iframe")
-    $iframeOculto.id="iframe-oculto"
-    //$iframeOculto.hidden="";
+    //
     // Insertar el nuevo elemento al principio del contenedor
-    document.body.insertBefore($iframeOculto,  document.body.firstChild);
+    for(let i= 0 ; i<5;i++){
+
+        var $iframeOculto = document.createElement("iframe")
+        $iframeOculto.className="hidden-iframes"
+        document.body.insertBefore($iframeOculto,  document.body.firstChild);
+        //$iframeOculto.hidden=true;
+    }
 
     // document.body.appendChild($iframeOculto)
     var repeticion = 0;
@@ -158,8 +167,60 @@ if(direccion.match(/download=.+/)){
 
     }
 
+    // Declarar una cola de eventos vacía
+    var queue = [];
+
+    // Declarar una variable booleana que indicará si la función ya se está ejecutando
+    var isRunning = false;
+
+    // Definir la función que se protegerá
+    function addDowload(href) {
+        // Agregar los argumentos a la cola de eventos
+        queue.push(href);
+
+        // Si la función no se está ejecutando, establecer la variable `isRunning` en verdadero y procesar la siguiente llamada en la cola
+        if (!isRunning) {
+            isRunning = true;
+            procesarSiguiente();
+        }
+    }
+
+    // Definir la función que manejará la cola de eventos
+    function procesarSiguiente() {
+        // Si la cola de eventos está vacía, establecer la variable `isRunning` en falso y salir de la función
+        if (queue.length === 0) {
+            isRunning = false;
+            return;
+        }
+
+        // Sacar la siguiente llamada de la cola de eventos y ejecutar el código de la función
+        var href = queue.shift();
+        // Código de la función aquí, utilizando los argumentos en `args`
+        // ...
+        var iframes = document.querySelectorAll(".hidden-iframes");
+        for(let i = 0 ; i< iframes.length; i++){
+
+            if(iframes[i].src===""){
+
+                //iframes[0].src = "";
+                iframes[i].src = href;
+                break;
+            }
+        };
+
+        // Llamar a `procesarSiguiente` de nuevo para procesar la siguiente llamada en la cola
+        setTimeout(procesarSiguiente, 0);
+    }
+
+
+
+
+
+
     function aplicarEfecto(link){
         //console.log(cr)
+
+
 
 
         link.onclick=(event)=>{
@@ -169,8 +230,8 @@ if(direccion.match(/download=.+/)){
                 // Hacer algo si se hace clic con Ctrl
             } else {
                 event.preventDefault(); // Evitar que el navegador siga el enlace
-                document.querySelector("#iframe-oculto").src = "";
-                document.querySelector("#iframe-oculto").src = link.href;
+                addDowload(event.target.href)
+
             }
 
         };
